@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>karlmark | Pixel Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-dark:#0d0d0d;
+  --bg-light:#f4f4f4;
+  --panel-dark:#1a1a1a;
+  --panel-light:#ffffff;
+  --accent:#00ffcc;
+  --accent2:#ff3c78;
+  --text-dark:#eaeaea;
+  --text-light:#111;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Press Start 2P', monospace;
+}
+
+body{
+  margin:0;
+  background:var(--bg-dark);
+  color:var(--text-dark);
+  transition:0.3s;
+}
+
+body.light{
+  background:var(--bg-light);
+  color:var(--text-light);
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:32px;
+}
+
+.panel{
+  background:var(--panel-dark);
+  border:4px solid var(--accent);
+  padding:24px;
+  margin-bottom:32px;
+}
+
+body.light .panel{
+  background:var(--panel-light);
+}
+
+h1{color:var(--accent)}
+h2{color:var(--accent2); font-size:14px}
+
+button{
+  background:var(--accent);
+  border:3px solid #000;
+  padding:10px 14px;
+  cursor:pointer;
+  box-shadow:4px 4px 0 #000;
+}
+
+button:hover{
+  background:var(--accent2);
+  color:#fff;
+}
+
+.xp-box{
+  border:4px solid #000;
+  height:24px;
+  background:#444;
+  margin-top:8px;
+}
+
+.xp-bar{
+  height:100%;
+  width:0%;
+  background:var(--accent);
+  transition:0.4s steps(10);
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  border:3px solid var(--accent2);
+  background:#111;
+  padding:12px;
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:translate(-4px,-4px);
+  box-shadow:4px 4px 0 #000;
+}
+
+.card img{
+  width:100%;
+  image-rendering:pixelated;
+  border:2px solid #000;
+}
+
+footer{
+  text-align:center;
+  font-size:10px;
+  opacity:0.6;
+  margin-top:48px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="panel">
+  <h1>karlmark<span id="cursor">_</span></h1>
+  <p>Full Stack Developer</p>
+  <button onclick="toggleTheme()">🌗 TOGGLE MODE</button>
+</div>
+
+<!-- LEVEL -->
+<div class="panel">
+  <h2>LEVEL SYSTEM</h2>
+  <p>LEVEL <span id="level">1</span></p>
+  <div class="xp-box">
+    <div class="xp-bar" id="xpBar"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="panel">
+  <h2>ABOUT_ME.exe</h2>
+  <p>
+    Hi, I'm <b>karlmark</b>.  
+    I love building full stack applications with a pixel / retro game vibe.
+  </p>
+</div>
+
+<!-- PROJECTS -->
+<div class="panel">
+  <h2>PROJECTS.sys</h2>
+  <div class="projects">
+
+    <div class="card">
+      <img src="https://picsum.photos/400/250?1">
+      <p>Pixel Portfolio</p>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/400/250?2">
+      <p>Retro Dashboard</p>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/400/250?3">
+      <p>Game UI Landing</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+© 2025 karlmark — PIXEL MODE ON 🎮
+</footer>
+
+</div>
+
+<script>
+/* blinking cursor */
+setInterval(()=>{
+  cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
+},500);
+
+/* XP + Level */
+let xp = 0;
+let level = 1;
+const bar = document.getElementById("xpBar");
+const lvl = document.getElementById("level");
+
+setInterval(()=>{
+  xp += 5;
+  if(xp >= 100){
+    xp = 0;
+    level++;
+    lvl.innerText = level;
+  }
+  bar.style.width = xp + "%";
+},800);
+
+/* theme toggle */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+</script>
+
+</body>
+</html>
